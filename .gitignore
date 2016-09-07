@@ -1,6 +1,6 @@
-/build/
-/Test1/target/
-/Test1/.settings/
+/build/*
+/Test1/target/*
+/Test1/.settings/*
 /Test1/bin/
 /.idea/*
 *.swap
