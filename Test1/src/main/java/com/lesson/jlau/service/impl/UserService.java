@@ -39,18 +39,16 @@ public class UserService implements UserServiceI {
 		List<User> users=this.userDao.getUsers();
  		return users;
 	}
-	@Override
 	public List<Long> getUserId() {
 		 List<Long> ids=this.userDao.getUserId(); 
 		return ids;
 	}
-	@Override
 	@Cacheable(value="getByUserId",key="#id")  
 	public User getByUserId(long id) {
 		 User user=this.userDao.selectByPrimaryKey(id);
 		 return user;
 	}
-	@Override
+	 
 	//清除缓存
 	@CacheEvict(value = { "getByUserId"}, allEntries = true) 
 	public void flushByUserIds() {

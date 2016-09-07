@@ -6,6 +6,8 @@ import java.util.List;
 
 public class User implements Serializable{
 
+	private static final long serialVersionUID = 6826248317517194772L;
+
 	private Long id;
 
     private String username;
