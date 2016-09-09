@@ -28,6 +28,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring-mybatis.xml</param-value>
 	</context-param>
+	
 	<!-- 编码过滤器 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -70,6 +71,20 @@
 		<url-pattern>*.do</url-pattern>
 		<url-pattern>*.json</url-pattern>
 	</servlet-mapping>
+	<!-- 添加cfx监听 -->
+	<servlet>
+		<servlet-name>CXFServlet</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+		<init-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring-cxf-service.xml</param-value>
+	</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CXFServlet</servlet-name>
+		<url-pattern>/webservice/*</url-pattern>
+	</servlet-mapping>  
 	
 	<welcome-file-list>
 		<welcome-file>/index.jsp</welcome-file>
