@@ -1,155 +1,183 @@
 package com.lesson.jlau.redis;
 
-import java.io.ByteArrayInputStream;  
-import java.io.ByteArrayOutputStream;  
-import java.io.IOException;  
-import java.io.ObjectInputStream;  
-import java.io.ObjectOutputStream;  
-  
-import org.springframework.cache.Cache;  
-import org.springframework.cache.support.SimpleValueWrapper;  
-import org.springframework.dao.DataAccessException;  
-import org.springframework.data.redis.connection.RedisConnection;  
-import org.springframework.data.redis.core.RedisCallback;  
-import org.springframework.data.redis.core.RedisTemplate;  
-  
-public class RedisCache implements Cache{  
-  
-    private RedisTemplate<String, Object> redisTemplate;    
-    private String name;    
-    public RedisTemplate<String, Object> getRedisTemplate() {  
-        return redisTemplate;    
-    }  
-       
-    public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate) {  
-        this.redisTemplate = redisTemplate;    
-    }  
-       
-    public void setName(String name) {  
-        this.name = name;    
-    }  
-       
-     
-    public String getName() {  
-       // TODO Auto-generated method stub    
-        return this.name;    
-    }  
-  
-     
-    public Object getNativeCache() {  
-      // TODO Auto-generated method stub    
-        return this.redisTemplate;    
-    }  
-   
-        
-    public ValueWrapper get(Object key) {  
-      // TODO Auto-generated method stub  
-      System.out.println("get key");  
-      final String keyf =  key.toString();  
-      Object object = null;  
-      object = redisTemplate.execute(new RedisCallback<Object>() {  
-      public Object doInRedis(RedisConnection connection)    
-                  throws DataAccessException {  
-          byte[] key = keyf.getBytes();  
-          byte[] value = connection.get(key);  
-          if (value == null) {  
-             return null;  
-            }  
-          return toObject(value);  
-          }  
-       });  
-        return (object != null ? new SimpleValueWrapper(object) : null);  
-      }  
-    
-         
-     public void put(Object key, Object value) {  
-       // TODO Auto-generated method stub  
-       System.out.println("put key");  
-       final String keyf = key.toString();    
-       final Object valuef = value;    
-       final long liveTime = 86400;    
-       redisTemplate.execute(new RedisCallback<Long>() {    
-           public Long doInRedis(RedisConnection connection)    
-                   throws DataAccessException {    
-                byte[] keyb = keyf.getBytes();    
-                byte[] valueb = toByteArray(valuef);    
-                connection.set(keyb, valueb);    
-                if (liveTime > 0) {    
-                    connection.expire(keyb, liveTime);    
-                 }    
-                return 1L;    
-             }    
-         });    
-      }  
-  
-      private byte[] toByteArray(Object obj) {    
-         byte[] bytes = null;    
-         ByteArrayOutputStream bos = new ByteArrayOutputStream();    
-         try {    
-           ObjectOutputStream oos = new ObjectOutputStream(bos);    
-           oos.writeObject(obj);    
-           oos.flush();    
-           bytes = bos.toByteArray();    
-           oos.close();    
-           bos.close();    
-          }catch (IOException ex) {    
-               ex.printStackTrace();    
-          }    
-          return bytes;    
-        }    
-  
-       private Object toObject(byte[] bytes) {  
-         Object obj = null;    
-           try {  
-               ByteArrayInputStream bis = new ByteArrayInputStream(bytes);    
-               ObjectInputStream ois = new ObjectInputStream(bis);    
-               obj = ois.readObject();    
-               ois.close();    
-               bis.close();    
-           } catch (IOException ex) {    
-               ex.printStackTrace();    
-            } catch (ClassNotFoundException ex) {    
-               ex.printStackTrace();    
-            }    
-            return obj;    
-        }  
-    
-           
-       public void evict(Object key) {    
-         // TODO Auto-generated method stub    
-         System.out.println("del key");  
-         final String keyf = key.toString();    
-         redisTemplate.execute(new RedisCallback<Long>() {    
-         public Long doInRedis(RedisConnection connection)    
-                   throws DataAccessException {    
-             return connection.del(keyf.getBytes());    
-            }    
-          });    
-        }  
-   
-            
-        public void clear() {    
-           // TODO Auto-generated method stub    
-            System.out.println("clear key");  
-           redisTemplate.execute(new RedisCallback<String>() {    
-                public String doInRedis(RedisConnection connection)    
-                        throws DataAccessException {    
-                  connection.flushDb();    
-                    return "ok";    
-               }    
-           });    
-        }  
-  
-          
-        public <T> T get(Object key, Class<T> type) {  
-            // TODO Auto-generated method stub  
-            return null;  
-        }  
-      
-          
-        public ValueWrapper putIfAbsent(Object key, Object value) {  
-            // TODO Auto-generated method stub  
-            return null;  
-        }  
-  
-}  
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.shiro.cache.Cache;
+import org.apache.shiro.cache.CacheException;
+import org.apache.shiro.util.CollectionUtils;
+
+import com.lesson.jlau.util.SerializableUtil;
+
+public class RedisCache<K, V> implements Cache<K, V> {
+	
+		
+	/**
+     * The wrapped Jedis instance.
+     */
+	private RedisManager cache;
+	
+	/**
+	 * The Redis key prefix for the sessions 
+	 */
+	private String keyPrefix = "shiro_redis_session:";
+	
+	/**
+	 * Returns the Redis session keys
+	 * prefix.
+	 * @return The prefix
+	 */
+	public String getKeyPrefix() {
+		return keyPrefix;
+	}
+
+	/**
+	 * Sets the Redis sessions key 
+	 * prefix.
+	 * @param keyPrefix The prefix
+	 */
+	public void setKeyPrefix(String keyPrefix) {
+		this.keyPrefix = keyPrefix;
+	}
+	
+	/**
+	 * 通过一个JedisManager实例构造RedisCache
+	 */
+	public RedisCache(RedisManager cache){
+		 if (cache == null) {
+	         throw new IllegalArgumentException("Cache argument cannot be null.");
+	     }
+	     this.cache = cache;
+	}
+	
+	/**
+	 * Constructs a cache instance with the specified
+	 * Redis manager and using a custom key prefix.
+	 * @param cache The cache manager instance
+	 * @param prefix The Redis key prefix
+	 */
+	public RedisCache(RedisManager cache, 
+				String prefix){
+		 
+		this( cache );
+		
+		// set the prefix
+		this.keyPrefix = prefix;
+	}
+	
+	/**
+	 * 获得byte[]型的key
+	 * @param key
+	 * @return
+	 */
+	private byte[] getByteKey(K key){
+		if(key instanceof String){
+			String preKey = this.keyPrefix + key;
+    		return preKey.getBytes();
+    	}else{
+    		return SerializableUtil.serialize(key);
+    	}
+	}
+ 	
+	 
+	public V get(K key) throws CacheException {
+		try {
+			if (key == null) {
+	            return null;
+	        }else{
+	        	byte[] rawValue = cache.get(getByteKey(key));
+	        	@SuppressWarnings("unchecked")
+				V value = (V)SerializableUtil.unSerialize(rawValue);
+	        	return value;
+	        }
+		} catch (Throwable t) {
+			throw new CacheException(t);
+		}
+
+	}
+
+	 
+	public V put(K key, V value) throws CacheException {
+		 try {
+			 	cache.set(getByteKey(key), SerializableUtil.serialize(value));
+	            return value;
+	        } catch (Throwable t) {
+	            throw new CacheException(t);
+	        }
+	}
+
+	public V remove(K key) throws CacheException {
+		try {
+            V previous = get(key);
+            cache.del(getByteKey(key));
+            return previous;
+        } catch (Throwable t) {
+            throw new CacheException(t);
+        }
+	}
+
+	 
+	public void clear() throws CacheException {
+		try {
+            cache.flushDB();
+        } catch (Throwable t) {
+            throw new CacheException(t);
+        }
+	}
+
+	public int size() {
+		try {
+			Long longSize = new Long(cache.dbSize());
+            return longSize.intValue();
+        } catch (Throwable t) {
+            throw new CacheException(t);
+        }
+	}
+
+	@SuppressWarnings("unchecked")
+	 
+	public Set<K> keys() {
+		try {
+            Set<byte[]> keys = cache.keys(this.keyPrefix + "*");
+            if (CollectionUtils.isEmpty(keys)) {
+            	return Collections.emptySet();
+            }else{
+            	Set<K> newKeys = new HashSet<K>();
+            	for(byte[] key:keys){
+            		newKeys.add((K)key);
+            	}
+            	return newKeys;
+            }
+        } catch (Throwable t) {
+            throw new CacheException(t);
+        }
+	}
+
+	 
+	public Collection<V> values() {
+		try {
+            Set<byte[]> keys = cache.keys(this.keyPrefix + "*");
+            if (!CollectionUtils.isEmpty(keys)) {
+                List<V> values = new ArrayList<V>(keys.size());
+                for (byte[] key : keys) {
+                    @SuppressWarnings("unchecked")
+					V value = get((K)key);
+                    if (value != null) {
+                        values.add(value);
+                    }
+                }
+                return Collections.unmodifiableList(values);
+            } else {
+                return Collections.emptyList();
+            }
+        } catch (Throwable t) {
+            throw new CacheException(t);
+        }
+	}
+
+}
