@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 public class User implements Serializable{
 
 	private static final long serialVersionUID = 6826248317517194772L;
-
+	@Field(value="id")
 	private Long id;
-
+	@Field(value="username")
     private String username;
 
     private String password;

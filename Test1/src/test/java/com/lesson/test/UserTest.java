@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.alibaba.fastjson.JSON;
 import com.lesson.jlau.bean.User;
 import com.lesson.jlau.service.UserServiceI;
 
@@ -23,7 +24,7 @@ public class UserTest {
 	    } 
 	   @Test
  		public void getById(){
- 		    User u=this.userService.selectRolePermission("xiaohong");
+ 		    User u=this.userService.selectRolePermission("xiaojun");
  			System.out.println("========="+u);
  		}
 	   @Test
@@ -45,7 +46,7 @@ public class UserTest {
 		   user.setId(200L);
 		   user.setPassword("12311232121");
 		   user.setState("1");
-		   user.setUsername("xiaohong");
+		   user.setUsername("xiaojun");
 		   user.setCreateTime(new java.util.Date());
 		   User user1 =this.userService.updateUser(user);
 		   System.out.println("---------"+user1.toString()+"---------------");
@@ -83,7 +84,10 @@ public class UserTest {
 			   users.add(this.userService.getByUserId(ids.get(i)));
 		   }
 		   Long result=date1.getTime()-date.getTime();
-		   System.out.println("------------"+result);
+		   String jsonString=JSON.toJSONString(users);
+		   System.out.println(jsonString);
+		   List<User> users1=(List<User>)JSON.parseObject(jsonString,List.class);
+		   System.out.println(users1.size());
 	   }
 	   
 	   

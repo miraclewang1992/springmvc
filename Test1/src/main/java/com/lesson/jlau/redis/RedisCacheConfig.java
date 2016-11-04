@@ -1,4 +1,4 @@
-package com.lesson.jlau.redis;
+/*package com.lesson.jlau.redis;
 
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -8,7 +8,7 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-
+//通过注解的方式进行 
 @Configuration  
 @EnableCaching  
 public class RedisCacheConfig extends CachingConfigurerSupport {
@@ -19,6 +19,7 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
 	        // Defaults  
 	        redisConnectionFactory.setHostName("127.0.0.1");  
 	        redisConnectionFactory.setPort(6379);  
+	        redisConnectionFactory.setDatabase(1);
 	        return redisConnectionFactory;  
 	    }  
 	  
@@ -38,3 +39,4 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
 	        return cacheManager;  
 	    }  
 }
+*/

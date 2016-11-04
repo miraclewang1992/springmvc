@@ -36,9 +36,5 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
-	 
-	<!--  <import resource="spring-redis.xml"/>  -->
-	 
-	
+	<import resource="spring-redis.xml"/>
 </beans>
