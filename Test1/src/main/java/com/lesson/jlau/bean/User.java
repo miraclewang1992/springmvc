@@ -61,6 +61,7 @@ public class User implements Serializable{
     }
 
     public void setCreateTime(Date createTime) {
+    	if(createTime != null)
         this.createTime = createTime;
     }
 

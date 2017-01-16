@@ -89,6 +89,9 @@ public class UserTest {
 		   List<User> users1=(List<User>)JSON.parseObject(jsonString,List.class);
 		   System.out.println(users1.size());
 	   }
+	   @Test
+	   public void isolationID(){
+	   }
 	   
 	   
 }

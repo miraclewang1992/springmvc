@@ -111,7 +111,7 @@
             <tx:method name="repair" propagation="REQUIRED" />
             <tx:method name="delAndRepair" propagation="REQUIRED" />
 
-            <tx:method name="get*" propagation="SUPPORTS" />
+            <tx:method name="get*" propagation="SUPPORTS" /><!-- read-only="true" -->
             <tx:method name="find*" propagation="SUPPORTS" />
             <tx:method name="load*" propagation="SUPPORTS" />
             <tx:method name="search*" propagation="SUPPORTS" />
@@ -140,6 +140,8 @@
     <aop:config>
         <aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
     </aop:config>
+    <!-- 通过注解方式进行事务处理 -->
+    <!--  <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" /> -->
 <import resource="spring-redis.xml"/>
 	
 </beans>

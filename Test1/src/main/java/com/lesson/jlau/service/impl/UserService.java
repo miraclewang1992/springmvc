@@ -8,6 +8,8 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lesson.jlau.bean.User;
 import com.lesson.jlau.dao.UserMapper;
@@ -24,12 +26,14 @@ public class UserService implements UserServiceI {
 		return u;
 	}
 	//清除缓存
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
 	@CacheEvict(value = { "selectRolePermission"}, allEntries = true) 
 	public int insertUser(User user) {
 		
 		return this.userDao.insertSelective(user);
 	}
 	//更新缓存
+	//@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	@CachePut(value="selectRolePermission",key="#user.getUsername()")
 	public  User  updateUser(User user) {
 		this.userDao.updateByPrimaryKeySelective(user);

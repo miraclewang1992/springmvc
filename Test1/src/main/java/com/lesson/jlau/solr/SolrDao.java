@@ -1,11 +1,15 @@
 package com.lesson.jlau.solr;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.solr.client.solrj.SolrClient;
-import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -14,7 +18,6 @@ import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
-import org.apache.solr.common.params.HighlightParams;
 import org.apache.solr.common.params.MapSolrParams;
 import org.apache.solr.common.params.SolrParams;
 import org.junit.Test;
@@ -75,6 +78,7 @@ public class SolrDao {
 		SolrInputDocument document = new SolrInputDocument();
 		document.addField("id", "3333");
 		document.addField("username", "test");
+		document.addField("usercompany", "big");
 		UpdateResponse response = solr.add(document);
 		System.out.println(response.getElapsedTime());
 		solr.commit();
@@ -96,7 +100,7 @@ public class SolrDao {
         /*map.put("sort","username asc");
         map.put("sort","username asc");*/
         map.put("hl","true");
-        map.put("hl.fl", "username");
+        map.put("hl.fl", "id username");
         map.put("hl.simple.pre","<em>");
         map.put("hl.simple.post","</em>");
         SolrParams params = new MapSolrParams(map);  
@@ -106,15 +110,17 @@ public class SolrDao {
         //MultiMapSolrParams mParams = SolrRequestParsers.parseQueryString("queryString");  
         //QueryResponse resp = solr.query(mParams);  
         SolrDocumentList docsList = resp.getResults();  
-        System.out.println(docsList.size()+"------"+docsList.getNumFound());  
-      
+        
+        List<User>  list = new ArrayList();
+       
         for (SolrDocument doc : docsList) {  
-             System.out.print(doc.get("id")+"===");  
-             System.out.print(doc.get("username").toString()+"===");
+            
              String hl_username=resp.getHighlighting().get(doc.get("id")).get("username").toString();
-             System.out.println(hl_username);
+            
+             list.add((User) toBean(doc,User.class));
         }  
-      
+        System.out.println(list.get(0).getUsername());
+  
         solr.close();  
     }  
     /** 
@@ -128,5 +134,33 @@ public class SolrDao {
     	  solr.deleteById("3333");
     }
     
+    public static  Object toBean( SolrDocument record , Class clazz){
+        
+        Object o = null;
+       try {
+           o = clazz.newInstance();
+       } catch (InstantiationException e1) {
+           // TODO Auto-generated catch block
+           e1.printStackTrace();
+       } catch (IllegalAccessException e1) {
+           // TODO Auto-generated catch block
+           e1.printStackTrace();
+       }
+        Field[] fields =   clazz.getDeclaredFields();
+        for(Field field:fields){
+            Object value = record.get(field.getName());
+            try {
+               if(value!=null)
+               BeanUtils.setProperty(o, field.getName(), value);
+           } catch (IllegalAccessException e) {
+               // TODO Auto-generated catch block
+               e.printStackTrace();
+           } catch (InvocationTargetException e) {
+               // TODO Auto-generated catch block
+               e.printStackTrace();
+           }
+        }
+       return o;
+   }
 
 }
