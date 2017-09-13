@@ -1,0 +1,387 @@
+
+.nav{ background:#FFF; position:relative; z-index:10; font-size:16px;    border-bottom: 2px solid #CECECD;}
+.nav .box{ width:1100px;  margin:auto; position:relative; z-index:1;}
+.nav .logo{ display:block; float:left; margin:20px 0px 0px 0px;}
+.nav span{ display:block; text-align: center;padding-bottom:15px;}
+.nav span a{ display:inline-block; padding:0px 15px;  line-height:26px; font-size: 16px;font-weight: 600;font-family: Microsoft Yahei;color: #040000;margin-left: 20px;}
+.nav span a:hover{ color:#f5a623;}
+.nav span a.sel,.sell{ background:#fff; color:#000;border:2px solid #f5a623;border-radius: 10px; color:#f5a623;padding-bottom:0px;}
+.nav font{ position:absolute; z-index:1; top:0px; right:0px; display:block; overflow:hidden; margin:25px 0px 0px 0px; height:50px; text-align:center;}
+.nav font a{ display:block; padding:0px 30px; line-height:50px;}
+.nav font a:hover{ background:#fff; color:#f5a623;}
+.nav dl{ position:absolute; z-index:1; top:0px; right:0px; display:block; overflow:hidden; margin:20px 0px 0px 0px; height:62px; text-align:center; border:solid 1px #FFF; border-left:none; transition:All 0.2s linear;}
+.nav dl dt img{ border-radius:999px; overflow:hidden; margin:0px; width:60px; height:60px; }
+.nav dl dd a{ display:block; line-height:40px; background:#FFF; padding:0px 20px;}
+.nav dl:hover{ height:auto;  background:#FFF;}
+.nav dl:hover dd a{ }
+.nav dl:hover img{ width:60px; height:60px; margin:0px;}
+.nav dl dd a:hover{ background:#eb8d2b; color:#FFF;}
+.c3 {color:#ff8400}
+.c4 {color:#4a4a4a}
+.bold {font-weight: bold}
+.mc .header{
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    line-height: 40px;
+    text-align: center;
+}
+.article pre.caption {
+    font-size:20px;
+    font-weight: bold;
+    color:#ff8400;
+    line-height: 30px;
+    margin: 10px 0;
+}
+
+.article pre.text {
+    font-size: 16px;
+    color: #4a4a4a;
+    line-height: 32px;
+    margin: 10px 0 10px 0;
+    word-wrap: break-word;
+}
+
+.article .dot {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 10px;
+    background: #ff8400;
+}
+
+.article pre.text.c3 {
+    color: #4a4a4a;
+}
+
+.article.bottom-line {
+    border-bottom: 1px #ccc dotted;
+}
+
+.article th, .article table tr td {
+    margin: 0px;
+    padding: 0 10px;
+}
+input[type=text]:focus{
+	border-color:#F4920E;
+}
+select:focus{
+	border-color:#F4920E;
+}
+input[type=text]{height:30px}
+/*enroll*/
+.form-container {
+    border: 1px solid #ccc;
+    padding: 10px 10px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+.massage{
+	line-height:60px;
+	color:#ef8019;
+	font-family:微软雅黑;
+	font-weight:bold;
+	font-size:20px;
+	text-indent:54px;
+	border-bottom:2px solid #e5e5e4;
+}
+.form-header {
+    width: 600px;
+    margin: 0 auto;
+}
+
+.form-header .bottom-line {
+    width: 900px;
+    border-bottom: 1px #ccc dotted;
+}
+
+.form-group {
+    line-height: 33px;
+    margin: 30px 0;
+}
+.form-group1 {
+    line-height: 30px;
+    margin: 10px 0;
+    float: left;
+    width: 40%;
+    margin-left: 5%;
+}
+.form-group .enroll2 {
+    width: 450px;
+    font-size: 18px;
+    color: #040000;
+}
+
+.form-group label{
+    position: relative;
+    float: left;
+    width: 200px;
+    line-height: 29px;
+    text-align: right;
+}
+.form-group1 label{
+    position: relative;
+    float: left;
+    line-height: 30px;
+    text-align: right;
+    width: 80px;
+}
+.form-container .member-inline {
+    padding: 10px 10px 20px 10px;
+    border: 1px solid #ccc;
+    padding-left:30px;
+    overflow: hidden;
+}
+
+.form-container .col {
+    position: relative;
+   padding:10px;
+    display: inline-block;
+    text-align:center;
+}
+.col1{
+	float:left;
+	margin-top: 20px;
+}
+.example{
+	float:left;
+	margin-top: 10px;
+}
+.example1{
+	float:left;
+	margin-top:95px;
+	color: #ea5137;
+}
+.button.submit {
+    text-align: center;
+    color:#fff;
+    width: 110px;
+    line-height: 40px;
+    margin-left: 30px;
+    margin-top: 15px;
+    background: #ff8400;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.flag {
+    position: relative;
+    float:left;
+    width:100px;
+    line-height: 30px;
+    font-size: 20px;
+}
+.flag1{
+	float:left;
+	margin-left:50px;
+}
+.flag2{
+	float:left;
+	line-height: 50px;
+    padding-left: 18px;
+    color: #8a8a8a;
+    font-family: Arial;
+}
+.flag3{
+	float:left;
+}
+.flag4{
+	float:left;
+	color:#040000;
+	font-family:微软雅黑;
+	font-weight: bold;
+    margin-left: -47px;
+    margin-top: 50px;
+}
+.flag5{
+	float:left;
+    margin-left: 30px;
+    margin-top: 40px;
+}
+.flag img {
+   height:65px; 
+}
+
+.flag.selected span{
+    color: #fff;
+}
+
+.flag.pro1 span{
+    top: 0px;
+    position: absolute;
+    left: 86px;
+    width: 300px;
+    font-size: 20px;
+    line-height: 50px;
+}
+
+.flag.pro2 span{
+    top: 0px;
+    position: absolute;
+    left: 130px;
+    width: 300px;
+    font-size: 20px;
+    line-height: 50px;
+}
+
+.flag.pro3 span{
+    top: 0px;
+    position: absolute;
+    left: 500px;
+    width: 300px;
+    font-size: 20px;
+    line-height: 50px;
+}
+
+#contest_type, #contest_zone {
+    width: 200px;
+}
+.contest_zone1{
+	width:187px;
+	height:28px;
+}
+#province, #city {
+    width: 100px;
+}
+.member {
+    margin-top: 10px;
+}
+
+.member-inline #projectImageUpload {
+    position: absolute;
+    z-index: 0;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+ 
+.member .delete {
+    float: right; margin: 10px; color: #ff8400;
+    cursor: pointer;
+    margin-left: -42px;
+}
+
+.member .image-tips {
+    margin-left: 30px;
+}
+
+.uploadImage {
+    margin: 10px 0px 10px 0px;
+}
+
+.bdl {
+    top: 0px;
+}
+.line{
+	font-size: 25px;
+    color: #C1C1C1;
+    margin-left: -28px;
+}
+
+
+    /*chh 创客大赛 首页 begin*/
+.mc{ margin:40px auto;}
+html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, cite, code, del, em, img, q, small, strong, sub, sup, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, input,select{margin:0; padding:0;line-height:normal; height:auto;font-family:Arial, Microsoft Yahei, sourceHanSansCN; color:#4a4a4a; font-size:16px;}
+header, footer, article, section, nav, menu {display: block;clear: all; margin:0; padding:0; border:none;}
+table{border-collapse:collapse; border-spacing:0;}
+ol,ul{list-style:none;}
+img{border:0 none;}
+input{padding:0; outline:none; color:#4a4a4a; font-size:16px;border: 1px solid #b5b5b4; border-radius: 4px;padding-left: 6px;}
+select{ cursor: pointer;border-radius: 4px;text-indent: 3px; margin-left: 3px;outline: none;}
+a{ text-decoration:none;}
+.f_left{ float:left; display:inline;}
+.f_right{ float:right;}
+.t_left{ text-align:left;}
+.t_center{ text-align:center;}
+.t_right{ text-align:right;}
+.clear{ clear:both;}
+a{blr:expression(this.onFocus=this.blur())}
+a{outline:none;}
+
+body{ background:#fff;}
+.ck_box_chh{ width:1000px; margin:0 auto 50px auto;}
+.ck_intro_chh,.ck_introb_chh{ margin:20px auto; }
+.ck_intro_chh p{color:#ff8400; text-align:center; line-height:30px; letter-spacing:1px;}
+.ck_intro_chh p.ck_title_chh{ font-size:24px; line-height:60px;}
+.ck_introb_chh p{ font-size:18px; text-align:center; line-height:30px;}
+.ck_cy_chh{ overflow:hidden; zoom:1;}
+.ck_cy_chh ul li{ float:left; display:inline; width:280px; margin:0 0 0 150px;}
+.ck_cya_chh{ width:125px; height:125px; overflow:hidden; margin:5px auto; text-align:center; line-height:125px; font-size:24px; color:#ff8400; font-weight:bold; background:url(../img/ck/ck_chh_003.jpg) no-repeat 0 0;}
+.ck_cy_chh ul li p{ text-align:center; line-height:26px;}
+.ck_h1_chh{ font-size:24px; font-weight:bold; text-align:center; line-height:50px; margin:30px auto 10px auto; color:#ff8400;}
+.ck_jxsz_chh{ background:#f39800; padding:10px;}
+.ck_jxsz_chh p{ color:#fff; text-align:center; line-height:30px;}
+.ck_jxsz_chh p.first_p{ font-size:18px; margin:0 0 10px 0;}
+.ck_jl_chh{ text-align:center; color:#ff8400; font-size:18px; margin:20px 0;}
+.ck_jl_list{ overflow:hidden; zoom:1; margin:30px auto;}
+.ck_jl_list ul{ width:1081px; margin:0 0 0 -81px;}
+.ck_jl_list ul li{ float:left; display:inline; margin:0 0 0 81px; width:189px; height:189px; background:url(../img/ck/ck_chh_005.jpg) no-repeat 0 0; text-align:center; padding-top:60px;}
+.ck_jl_list ul li p{ color:#fff; font-size:20px; line-height:34px;}
+.ck_fxtz_chh{ background:url(../img/ck/ck_chh_006.jpg) no-repeat center bottom; padding:0 0 95px 0; text-align:center; font-size:18px;}
+.ck_introc_chh p{ text-align:center; line-height:30px;}
+.ck_introc_chh p strong,.ck_introc_chh p span{ line-height:30px; padding:0 10px;}
+/*chh 创客大赛 首页 end*/
+
+/*chh 创客大赛 用户登录 begin*/
+.ck_line{height:0px; overflow:hidden; margin:0 0 30px 0;}
+.ck_h2_chh{ font-size:24px; color:#ff8400; line-height:34px; text-align:center; letter-spacing:1px;}
+.ck_login_chh{ margin:20px auto; padding:20px; min-height:350px;}
+.ck_login_chh table tr td{ font-size:16px; padding:12px 2px; vertical-align:middle;}
+.ck_login_chh table tr td.ck_login_title_chh{ text-align:center; font-size:29px; color:#000; line-height:40px; height:60px;}
+.ck_text_chh{ width:176px; height:28px; line-height:28px; background:#e9e9e9; border:none; border-top:solid 1px #c0bfbf;}
+.ck_btn_chh{ height:36px; padding:0 26px; line-height:36px; background:#ff8400; border:none; color:#fff; font-size:16px; margin:0 5px; cursor:pointer;}
+.ck_login_chh table tr td.ck_btntd_chh{ height:100px;}
+#loginCk input[type=text]{width:269px;height:35px;font-size:14px;background:white;border:solid 1px #c0bfbf;padding-left:10px;}
+#loginCk input[type=password]{width:269px;height:35px;font-size:14px;background:white;border:solid 1px #c0bfbf;padding-left:10px;}
+/*chh 创客大赛 用户登录 end*/
+
+/*chh 创客大赛 用户注册 begin*/
+.ck_bread_chh{ height:88px; line-height:88px; overflow:hidden; background:url(../img/ck/ck_chh_007.jpg) no-repeat 0 0; text-align:center; font-size:24px; color:#ff8400;}
+.ck_message{ text-align:right; border-bottom:solid 1px #eff0f4; padding:0 10px 15px 10px; margin:0 40px 10px 40px;}
+.ck_btnb_chh{ height:35px; width:50px;line-height:29px; background:#ff8400; border:none; color:#fff; margin:0 5px; cursor:pointer;}
+.ck_btnb_no_chh{ background:#959595;}
+.ck_red_chh{ color:#ff0000; font-weight:bold; font-size:18px; padding:0 5px;}
+#signup input[type=text]{width:269px;height:35px;font-size:14px;background:white;border:solid 1px #c0bfbf;padding-left:10px;}
+#signup input[type=password]{width:269px;height:35px;font-size:14px;background:white;border:solid 1px #c0bfbf; padding-left:10px;}
+input#phoneB{width:130px;font-size:14px}
+/*chh 创客大赛 用户注册 end*/
+
+
+/*chh 创客大赛 个人中心 begin*/
+#leftUl li{background:#dcdcdc;}
+.user_chh{ width:998px; margin:-3px auto 0 auto; min-height:500px; /* background:#eeeeee; */ border:solid 1px #cccccc; position:relative;}
+.user_title_chh{ width:1000px; height:115px; background:url(../img/ck/ck_chh_001.png) no-repeat center 0; position:absolute; z-index:1; left:0; top:-53px; text-align:center; font-size:24px; color:#fff; overflow:hidden; padding-top:62px; font-weight:700}
+.user_con_chh{ width:819px; margin:110px auto; overflow:hidden; zoom:1;}
+.user_left_chh{ float:left; width:140px; display:inline; overflow:hidden; zoom:1;}
+.user_left_chh ul li{ height:40px; overflow:hidden; margin:0 0 20px 0;}
+.user_left_chh ul li a{float:left; width:129px; height:40px; line-height:40px; padding:0 5px 0 26px; font-size:18px; color:#4a4a4a;}
+.user_left_chh ul li a:hover,.user_left_chh ul li a.active{ color:#ff8400;}
+.user_right_chh{ float:right; width:646px;border-left: solid 1px #dcdcdc;}
+.user_table_chh{ float:left; width:520px;}
+.user_table_chh table tr td{ font-size:16px; color:#0a0204; padding:10px 2px;}
+.user_text_chh{ width:230px; height:28px; overflow:hidden; line-height:23px; padding:0 3px; border:none; background:transparent; font-size:16px; color:#0a0204;}
+.user_text_yes_chh{ background:#DCDCDC;}
+
+.team_xx_chh{line-height:30px; height:30px; overflow:hidden; margin:5px 0;}
+.team_list_chh{ margin:0 42px; overflow:hidden; zoom:1;}
+.team_list_chh ul li{ overflow:hidden; zoom:1; margin:0 0 70px 0;}
+.team_num_chh{ color:#040000; height:55px; line-height:55px;}
+.team_pic_chh{ width:174px; height:199px; overflow:hidden; float:left; display:inline; margin:8px 0 0 30px;}
+.team_infor_chh{margin:0 0 0 220px;}
+.team_infor_chh table tr td{ font-size:12px; color:#0a0204; padding:10px 2px; font-weight:bold;}
+span.team_data_chh{ font-size:12px; font-weight:normal;}
+/*chh 创客大赛 个人中心 end*/
+
+
+label.labelnone{
+	position: relative;
+    float: none;
+    width: 200px;
+    line-height: 35px;
+    text-align: right;
+}

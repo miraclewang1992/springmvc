@@ -10,14 +10,15 @@
     <result column="stu_create_time" property="stuCreateTime" jdbcType="TIMESTAMP" />
     <result column="stu_class" property="stuClass" jdbcType="SMALLINT" />
     <result column="stu_enter_year" property="stuEnterYear" jdbcType="TIMESTAMP" />
+    <result column="rank" property="rank" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     stu_id, stu_name, stu_major, stu_password, stu_create_time, stu_class, stu_enter_year
   </sql>
   <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
-    <include refid="Base_Column_List" />
-    from jlau_student
+    <include refid="Base_Column_List" />,@rank :=@rank+1 as rank
+    from jlau_student,(Select @rank:=0) init
     where stu_id = #{stuId,jdbcType=VARCHAR}
   </select>
   <select id="getAll" resultMap="BaseResultMap" parameterType="java.lang.String" >

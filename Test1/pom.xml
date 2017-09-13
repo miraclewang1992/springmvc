@@ -73,7 +73,7 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.14</version>
+			<version>1.2.17</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -223,5 +223,57 @@
 		    <artifactId>lucene-analyzers-common</artifactId>  
 		    <version>5.2.1</version>  
 		</dependency>  
+		<dependency>
+		    <groupId>com.dangdang</groupId>
+		    <artifactId>sharding-jdbc-core</artifactId>
+		    <version>1.3.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.alibaba</groupId>
+		  <artifactId>dubbo</artifactId>
+		  <version>2.5.3</version>
+		</dependency>
+	
+ 		<dependency>
+		  <groupId>org.apache.zookeeper</groupId>
+		  <artifactId>zookeeper</artifactId>
+		  <version>3.3.3</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>com.github.sgroschupf</groupId>
+			<artifactId>zkclient</artifactId>
+			<version>0.1</version>
+		</dependency> 
+		<dependency>
+		  <groupId>org.javassist</groupId>
+		  <artifactId>javassist</artifactId>
+		  <version>3.18.1-GA</version>
+		</dependency> 
+   		<dependency>  
+            <groupId>org.springframework.kafka</groupId>  
+            <artifactId>spring-kafka</artifactId>  <!-- kafka-clients Version 0.10.0.x, 0.10.1.x -->  
+            <version>1.1.1.RELEASE</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>org.apache.kafka</groupId>  
+            <artifactId>kafka-clients</artifactId>  
+            <version>0.10.1.0</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>org.springframework.integration</groupId>  
+            <artifactId>spring-integration-kafka</artifactId>  
+            <version>1.3.0.RELEASE</version>  
+        </dependency>  
+        <dependency>
+		  <groupId>org.jboss.netty</groupId>
+		  <artifactId>netty</artifactId>
+		  <version>3.2.5.Final</version>
+		</dependency>
+	  <dependency>
+         <groupId>com.yammer.metrics</groupId>
+         <artifactId>metrics-core</artifactId>
+         <version>2.2.0</version>
+     </dependency>
 	</dependencies>
 </project>

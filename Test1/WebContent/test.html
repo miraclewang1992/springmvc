@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="common/js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="jquery-confirm/js/jquery-confirm.js"></script>
+<script type="text/javascript" src="common/js/jquery.toObject.js"></script>
+<script type="text/javascript" src="common/js/form2js.js"></script>
+<script type="text/javascript" src="common/js/jquery.tmpl.min.js"></script>
+<meta charset="UTF-8">
+<title>测试页面</title>
+</head>
+<body>
+<script>
+ 	/* $.ajax({
+	    url: 'http://127.0.0.1:8080/innoCasicloud/test/test.json"',
+	    type: 'get',
+	    dataType:'json',
+	    data: {
+	        "pg":'0',
+	    },
+	    success:function(data){
+	    	debugger
+	        alert(data)
+	        settime(obj);
+	    },
+	    error:function(data){
+	    	debugger
+	    	alert(data.ret)
+	    },
+	    
+	});  */
+	 
+	var cfg =     {
+	        type: 'POST', 
+	        dataType: 'json',
+	        contentType:'application/json;charset=UTF-8'
+	};
+ 	cfg.data=JSON.stringify({ "pg":'红色'});  
+ 	
+ 	
+ 	cfg.success = function ret(data){
+ 		debugger 
+ 	   	/*  res= eval("("+data+")");  */
+ 	   	alert(data.result)
+ 	   	var obj= eval("("+data.result+")");
+		 alert(obj.bool);
+	};
+ 
+	cfg.url = 'http://127.0.0.1:8080/innoCasicloud/test/test.json';
+	$.ajax(cfg);
+	/* jQuery.getJSON("http://127.0.0.1:8080/innoCasicloud/test/test.json?pg=1" + "&callback=?", function(data)  {
+		  debugger
+		  alert(data.a + data.b);  
+	}); */
+</script>
+</body>
+</html>

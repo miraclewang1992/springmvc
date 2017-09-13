@@ -18,7 +18,17 @@ public class Student implements Serializable{
 
     private Date stuEnterYear;
 
-    public String getStuId() {
+    private Integer rank;
+    
+    public Integer getRank() {
+		return rank;
+	}
+
+	public void setRank(Integer rank) {
+		this.rank = rank;
+	}
+
+	public String getStuId() {
         return stuId;
     }
 
@@ -92,6 +102,6 @@ public class Student implements Serializable{
 	public String toString() {
 		return "Student [stuId=" + stuId + ", stuName=" + stuName + ", stuMajor=" + stuMajor + ", stuPassword="
 				+ stuPassword + ", stuCreateTime=" + stuCreateTime + ", stuClass=" + stuClass + ", stuEnterYear="
-				+ stuEnterYear + "]";
+				+ stuEnterYear + ", rank=" + rank + "]";
 	}
 }

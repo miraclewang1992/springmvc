@@ -1,0 +1,70 @@
+.fl{
+	float:left;		
+}  
+.fr{
+	float: right;
+}  
+.tbody{
+	width: 100%;
+	/*min-height: 11rem;
+    padding: 2rem 0 1rem 0 ;
+	background: url(../img/sbackground.png) 0 0 no-repeat;
+	background-size: cover;*/
+}  
+.tbody-img{
+	width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.tmainlist{
+	width: 100%;
+	position: absolute;
+    top: 1rem;
+    left: 0;
+    font-size: 0.14rem;
+    color: white;
+    line-height: 35px;
+}
+.tmainlist li{
+	overflow: hidden;
+    margin-bottom: 0.10rem;
+}
+.tlist-li{
+    height: 35px;
+    width: 73%;
+    margin: 0 2% 0 5%;
+    padding-bottom: 5px;
+    border-bottom: 1px solid white;
+}
+.tname{
+    display: inline-block;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tnum{
+	display: inline-block;
+    width: 20%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tlist-li1{
+	width: 20%;
+	height: 35px;
+	/*background: url(../img/svote.png) 0 0 no-repeat;
+	background-size: cover;*/
+}
+.tlist-li1 img{
+	width: 90%;
+    height: 35px;
+}
+
+
+
+
+

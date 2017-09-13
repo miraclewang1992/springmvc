@@ -1,6 +1,7 @@
 package com.lesson.jlau.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.lesson.jlau.bean.Student;
 
@@ -15,6 +16,12 @@ public interface StudentServiceI {
 	public List<Student> getAll();
 
 	public void addStu();
+
+	public int update(Student stu);
+
+	public Map updateJson();
+
+	public int updateA();
 
  
 

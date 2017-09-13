@@ -1,10 +1,14 @@
 package com.lesson.jlau.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lesson.jlau.bean.Student;
 import com.lesson.jlau.dao.StudentMapper;
@@ -29,7 +33,7 @@ public class StudentService implements StudentServiceI {
 	}
 */
 	
-	 
+	@Transactional(propagation=Propagation.NEVER) 
 	public Student getById(String id) {
 	 
 		return studentDao.getById(id);
@@ -78,5 +82,35 @@ public class StudentService implements StudentServiceI {
 		stu2.setStuPassword("123456");
 		int i2=this.studentDao.insertSelective(stu2);
 		}
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED) 
+	public int update(Student stu) {
+		int result = this.studentDao.updateByPrimaryKey(stu);
+		return result;
+	}
+
+	@Transactional(propagation=Propagation.NEVER) 
+	public Map updateJson() {
+		String id = "10";
+		Map m =new HashMap();
+		Student stu = this.studentDao.getById(id);
+		m.put("stu",stu);
+		Student stu2 = this.studentDao.getById(id);
+		stu2.setStuMajor("信息技术科学"+new java.util.Date());
+	    this.studentDao.updateByPrimaryKey(stu2);
+	    Student stu1 = this.studentDao.getById(id);
+	    m.put("stu2",stu2);
+	    m.put("stu1", stu1);
+		return m;
+	}
+	@Transactional(propagation=Propagation.REQUIRES_NEW) 
+	public int upateB(){
+		throw new RuntimeException();
+	}
+	@Transactional(propagation=Propagation.REQUIRED) 
+	public int updateA() {
+		upateB();
+		return 0;
 	}
 }

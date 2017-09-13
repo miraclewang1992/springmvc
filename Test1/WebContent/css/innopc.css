@@ -1,0 +1,68 @@
+.fl{
+	float:left;		
+}  
+.fr{
+	float: right;
+}  
+body{
+    width: 100%;
+    padding-top: 75px;
+    height: 100%;
+    background: url(http://7xnier.com1.z0.glb.clouddn.com/innob.png) 0 0 no-repeat;
+    background-size: cover;
+}
+.scontent{
+	width: 1200px;
+	margin:0 auto ;
+	background: url(../img/sbac2.png) 0 0 no-repeat;
+    background-size: cover;
+    z-index:-1;
+}
+.slogo{
+    width: 130px;
+	margin-top: -60px;
+    margin-left: 30px;
+}
+.stitle{
+	width: 320px;
+    margin-left: 400px;
+}
+.sover{
+    height: 180px;
+    position: relative;
+}
+.ko{
+    margin: 20px 0 0 20px;
+    width: 160px;
+    position: absolute;
+    top: 129px;
+    right: 160px;
+}
+#main1{
+	width: 1200px;
+    margin: 0px auto;
+}	
+.innotle {
+	width: 100%;
+}
+.innotle img{
+	width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
